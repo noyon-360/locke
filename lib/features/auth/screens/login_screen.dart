@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
+import '../../../core/theme/theme.dart';
 import '../widgets/keypad.dart';
-import 'vault_dashboard_screen.dart';
+import '../../home/screens/vault_dashboard_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

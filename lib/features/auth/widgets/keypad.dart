@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
+import '../../../core/theme/theme.dart';
 
 // ── Key variants ─────────────────────────────────────────────────────────────
 

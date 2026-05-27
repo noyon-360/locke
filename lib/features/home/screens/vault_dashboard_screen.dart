@@ -1,10 +1,10 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../theme.dart';
-import '../models/vault_entry.dart';
-import '../widgets/quick_add_sheet.dart';
-import 'email_sync_screen.dart';
+import '../../../core/theme/theme.dart';
+import '../../auth/models/locke_entry.dart';
+import 'quick_add_sheet.dart';
+import '../../sync/screens/email_sync_screen.dart';
 
 // ── Username obfuscation ──────────────────────────────────────────────────────
 
@@ -45,7 +45,7 @@ class _VaultDashboardScreenState extends State<VaultDashboardScreen> {
     super.dispose();
   }
 
-  List<VaultEntry> get _filtered {
+  List<LockeEntry> get _filtered {
     final q = _query.trim().toLowerCase();
     if (q.isEmpty) return kVaultSeed;
     return kVaultSeed.where((e) =>
@@ -53,7 +53,7 @@ class _VaultDashboardScreenState extends State<VaultDashboardScreen> {
         e.username.toLowerCase().contains(q)).toList();
   }
 
-  void _copy(VaultEntry e) {
+  void _copy(LockeEntry e) {
     Clipboard.setData(ClipboardData(text: e.password));
     setState(() => _toast = 'Password copied · ${e.title}');
     Future.delayed(const Duration(milliseconds: 1600), () {
@@ -305,7 +305,7 @@ class _DashboardHeader extends StatelessWidget {
 // ── Row ───────────────────────────────────────────────────────────────────────
 
 class _VaultRow extends StatefulWidget {
-  final VaultEntry item;
+  final LockeEntry item;
   final bool revealed;
   final VoidCallback onToggleReveal;
   final VoidCallback onCopy;
