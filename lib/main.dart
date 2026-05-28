@@ -3,18 +3,20 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'features/sync/screens/email_sync_screen.dart';
 import 'firebase_options.dart';
 import 'core/theme/theme.dart';
-import 'features/auth/screens/pin_setup_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent,
-    statusBarBrightness: Brightness.dark,
-    statusBarIconBrightness: Brightness.light,
-  ));
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.light,
+    ),
+  );
   runApp(const ProviderScope(child: LockeApp()));
 }
 
@@ -44,7 +46,7 @@ class LockeApp extends StatelessWidget {
           border: InputBorder.none,
         ),
       ),
-      home: const PinSetupScreen(),
+      home: const EmailSyncScreen(),
     );
   }
 }

@@ -14,7 +14,7 @@ class EmailSyncScreen extends StatefulWidget {
 class _EmailSyncScreenState extends State<EmailSyncScreen> {
   final _ctrl = TextEditingController();
   bool _focus = false;
-  bool _sent  = false;
+  bool _sent = false;
 
   @override
   void dispose() {
@@ -34,7 +34,7 @@ class _EmailSyncScreenState extends State<EmailSyncScreen> {
   Widget build(BuildContext context) {
     final email = _ctrl.text;
     final valid = _isValidEmail(email);
-
+ 
     return Scaffold(
       backgroundColor: const Color(0xFF121212),
       body: SafeArea(
@@ -43,16 +43,6 @@ class _EmailSyncScreenState extends State<EmailSyncScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Back button
-              Padding(
-                padding: const EdgeInsets.only(top: 8),
-                child: IconButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  icon: const Icon(Icons.arrow_back, color: Lk.textDim, size: 20),
-                  padding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
-                ),
-              ),
               // Hero block
               const SizedBox(height: Lk.xxl),
               Center(
@@ -71,7 +61,12 @@ class _EmailSyncScreenState extends State<EmailSyncScreen> {
                       child: Text(
                         'Enter your email to pair devices and securely sync your '
                         'offline data via a passwordless magic link.',
-                        style: Lk.ui(13, FontWeight.w400, Lk.textDim, ls: -0.05),
+                        style: Lk.ui(
+                          13,
+                          FontWeight.w400,
+                          Lk.textDim,
+                          ls: -0.05,
+                        ),
                         textAlign: TextAlign.center,
                         softWrap: true,
                       ),
@@ -81,7 +76,10 @@ class _EmailSyncScreenState extends State<EmailSyncScreen> {
               ),
               const SizedBox(height: Lk.xxl),
               // Email label
-              Text('EMAIL', style: Lk.ui(11, FontWeight.w600, Lk.textMute, ls: 1.4)),
+              Text(
+                'EMAIL',
+                style: Lk.ui(11, FontWeight.w600, Lk.textMute, ls: 1.4),
+              ),
               const SizedBox(height: 6),
               // Email input card
               AnimatedContainer(
@@ -92,7 +90,13 @@ class _EmailSyncScreenState extends State<EmailSyncScreen> {
                   borderRadius: BorderRadius.circular(14),
                   border: Border.all(color: _focus ? Lk.lineStr : Lk.line),
                   boxShadow: _focus
-                      ? [BoxShadow(color: Colors.white.withValues(alpha: 0.04), blurRadius: 0, spreadRadius: 3)]
+                      ? [
+                          BoxShadow(
+                            color: Colors.white.withValues(alpha: 0.04),
+                            blurRadius: 0,
+                            spreadRadius: 3,
+                          ),
+                        ]
                       : [],
                 ),
                 child: Row(
@@ -101,8 +105,11 @@ class _EmailSyncScreenState extends State<EmailSyncScreen> {
                     // @ glyph
                     AnimatedDefaultTextStyle(
                       duration: const Duration(milliseconds: 140),
-                      style: Lk.mono(16, FontWeight.w500,
-                          valid ? Lk.accent : Lk.textMute),
+                      style: Lk.mono(
+                        16,
+                        FontWeight.w500,
+                        valid ? Lk.accent : Lk.textMute,
+                      ),
                       child: const Text('@'),
                     ),
                     const SizedBox(width: 10),
@@ -145,10 +152,24 @@ class _EmailSyncScreenState extends State<EmailSyncScreen> {
               SizedBox(
                 height: 14,
                 child: email.isNotEmpty && !valid
-                    ? Text('Enter a valid email address.',
-                        style: Lk.ui(11.5, FontWeight.w400, Lk.danger, ls: -0.05))
-                    : Text('End-to-end encrypted · we never see your vault contents.',
-                        style: Lk.ui(11.5, FontWeight.w400, Lk.textMute, ls: -0.05)),
+                    ? Text(
+                        'Enter a valid email address.',
+                        style: Lk.ui(
+                          11.5,
+                          FontWeight.w400,
+                          Lk.danger,
+                          ls: -0.05,
+                        ),
+                      )
+                    : Text(
+                        'End-to-end encrypted · we never see your vault contents.',
+                        style: Lk.ui(
+                          11.5,
+                          FontWeight.w400,
+                          Lk.textMute,
+                          ls: -0.05,
+                        ),
+                      ),
               ),
               const Spacer(),
               // Primary action button
@@ -161,11 +182,15 @@ class _EmailSyncScreenState extends State<EmailSyncScreen> {
                   decoration: BoxDecoration(
                     color: valid ? Lk.text : Lk.surface,
                     borderRadius: BorderRadius.circular(16),
-                    border: Border.all(
-                      color: valid ? Lk.accent : Lk.line,
-                    ),
+                    border: Border.all(color: valid ? Lk.accent : Lk.line),
                     boxShadow: valid
-                        ? [BoxShadow(color: Lk.accent.withValues(alpha: 0.10), blurRadius: 0, spreadRadius: 3)]
+                        ? [
+                            BoxShadow(
+                              color: Lk.accent.withValues(alpha: 0.10),
+                              blurRadius: 0,
+                              spreadRadius: 3,
+                            ),
+                          ]
                         : [],
                   ),
                   child: Center(
@@ -173,16 +198,31 @@ class _EmailSyncScreenState extends State<EmailSyncScreen> {
                         ? Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              const Icon(Icons.check, size: 18, color: Lk.accent),
+                              const Icon(
+                                Icons.check,
+                                size: 18,
+                                color: Lk.accent,
+                              ),
                               const SizedBox(width: 10),
-                              Text('Magic link sent — check your inbox',
-                                  style: Lk.ui(15, FontWeight.w700, Lk.bg, ls: -0.1)),
+                              Text(
+                                'Magic link sent — check your inbox',
+                                style: Lk.ui(
+                                  15,
+                                  FontWeight.w700,
+                                  Lk.bg,
+                                  ls: -0.1,
+                                ),
+                              ),
                             ],
                           )
                         : Text(
                             'Send Magic Link',
-                            style: Lk.ui(15, FontWeight.w700,
-                                valid ? Lk.bg : Lk.textMute, ls: -0.1),
+                            style: Lk.ui(
+                              15,
+                              FontWeight.w700,
+                              valid ? Lk.bg : Lk.textMute,
+                              ls: -0.1,
+                            ),
                           ),
                   ),
                 ),
@@ -197,7 +237,12 @@ class _EmailSyncScreenState extends State<EmailSyncScreen> {
                     child: Center(
                       child: Text(
                         'Skip — keep this vault local only',
-                        style: Lk.ui(13, FontWeight.w500, Lk.textMute, ls: -0.05),
+                        style: Lk.ui(
+                          13,
+                          FontWeight.w500,
+                          Lk.textMute,
+                          ls: -0.05,
+                        ),
                       ),
                     ),
                   ),
@@ -219,7 +264,8 @@ class _PaperPlaneIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SizedBox(
-      width: 56, height: 56,
+      width: 56,
+      height: 56,
       child: CustomPaint(painter: _PlanePainter()),
     );
   }
